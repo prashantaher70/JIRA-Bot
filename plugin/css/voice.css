@@ -1,0 +1,27 @@
+#results {
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: left;
+    min-height: 40px;
+}
+
+.voice-input {
+    border: none;
+    outline: none;
+}
+
+.voice-input:focus {
+    border: none;
+    outline: none;
+}
+
+.final {
+    color: black;
+    padding-right: 3px;
+}
+
+.interim {
+    color: gray;
+}

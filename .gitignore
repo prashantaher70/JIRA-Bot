@@ -1,0 +1,5 @@
+/.idea
+*.pyc
+/atlassianbot.iml
+*.iml
+.DS_Store

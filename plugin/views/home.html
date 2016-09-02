@@ -1,0 +1,86 @@
+<md-content>
+    <div layout="row" layout-align="center">
+        <div flex="100" flex-gt-sm="50">
+
+            <div layout="column">
+
+                <md-card ng-show="ask">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">Please provide following information</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content layout="column">
+                        <md-input-container ng-repeat="attr in askAttrs">
+                            <label>{{attr}}</label>
+                            <input ng-model="askResponse[attr]">
+                        </md-input-container>
+                        <md-button class="md-raised"
+                                   ng-click="submitAskResponse()">Submit</md-button>
+                    </md-card-content>
+                </md-card>
+
+                <voiceinput ng-hide="ask" finish="finishedSpeaking(transcript)"/>
+
+
+                <md-card ng-if="showAnswer && answer.type == 'string'">
+                    <md-card-content layout="column">
+                        <p>{{answer.value}}</p>
+                    </md-card-content>
+                </md-card>
+
+
+                <md-card ng-if="showAnswer && answer.type == 'jira'">
+                    <md-card-content layout="column">
+                        <omni-jira jira="answer"/>
+                    </md-card-content>
+                </md-card>
+
+                <md-card ng-if="showAnswer && answer.type == 'comment'">
+                    <md-card-content layout="column">
+                        <omni-comments comments="answer.comment.comments"/>
+                    </md-card-content>
+                </md-card>
+
+                <md-card>
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-subhead">Activity related to you</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content layout="column">
+                        <p ng-if="events.length == 0"> No new notififications at this moment</p>
+                        <div ng-repeat-start="event in events" layout="row">
+                            <div>
+                                <p>
+                                    <img ng-src="{{event.user.avatarObject}}" class="md-avatar" alt="{{event.user.displayName}}" />
+                                </p>
+                            </div>
+                            <div layout="column" style="margin-left:8px">
+                                <p>
+                                    <a ng-click="openLink(event.user.self)"> {{event.user.displayName}}</a>
+                                    {{event.action}}
+                                    <a ng-click="openLink(event.issue.self)">{{event.issue.summary}}</a>
+                                    {{event.object}}
+                                </p>
+
+                                <ul class="changelog" ng-if="event.changelog.length > 0">
+                                    <li ng-repeat="change in event.changelog">
+                                        {{change.toString == null || change.toString == undefined || change.toString == ''? 'Removed' + change.field : 'Changed the ' + change.field + ' to ' + change.toString}}
+                                    </li>
+                                </ul>
+
+                                <blockquote ng-if="event.comment.body != null ||
+                                        event.comment.body != undefined">
+                                    {{event.comment.body}}
+                                </blockquote>
+                                <code>{{TimeService.formatTime(event.timestamp)}}</code>
+                            </div>
+                        </div>
+                        <md-divider style="margin-top:4px;" ng-repeat-end></md-divider>
+                    </md-card-content>
+                </md-card>
+            </div>
+        </div>
+    </div>
+</md-content>

@@ -1,0 +1,124 @@
+<div layout="row" layout-fill=""
+         ng-animate="'animate'"
+         ng-switch="currentPage">
+
+    <div ng-switch-when="Register_Fill_Org_Details" layout="row" flex="100" layout-align="center center">
+        <md-card flex="60" flex-gt-sm="30">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Omni Wheel Register</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column">
+                <md-input-container>
+                    <label>Organisation</label>
+                    <input ng-model="createOrgData.orgName">
+                </md-input-container>
+
+                <md-input-container>
+                    <label>Organisation Jira Endpoint</label>
+                    <input ng-model="createOrgData.orgJiraEndpoint">
+                </md-input-container>
+
+                <md-button class="md-raised"
+                           ng-click="createOrg()">Continue</md-button>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div ng-switch-when="Register_Configure_Jira" layout="row" flex="100" layout-align="center center">
+        <md-card flex="90" flex-gt-sm="60">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">OAuth Setup Instructions</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column">
+                <p>
+                    Log in to your JIRA account. Go to settings menu, select Jira Administraion.
+                </p>
+                <ul>
+                    <li>Select Application</li>
+                    <li>
+                        <p> Go to Application Links</p>
+                        <p>Put <code>https://omniwheel.in</code> in url field</p>
+                        <p>Click on create new link</p>
+                        <p>Press continue if asked</p>
+                    </li>
+                    <li>
+                        <p>Fill in the details as follows</p>
+                        <p>Application Name: <strong>OmniWheel</strong></p>
+                        <p>Application Type: <strong>Generic Application</strong></p>
+                    </li>
+                    <li>
+                        Check <code>Create incoming link</code>
+                    </li>
+                    <li>
+                        <p>Fill in the form with following details</p>
+                        <p>Consumer Key: <Strong>OmniWheelConsumerKey</Strong></p>
+                        <p>Consumer: <Strong>OmniWheel</Strong></p>
+                        <p>Public Key: </p>
+                        <p>
+                            <code class="js-public-key">
+                                -----BEGIN PUBLIC KEY-----
+                                MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDFJpYBicouKV/bMUndLb0SLasK
+                                1WpZ2HWI1ZcDpIzKI3vuCtgECpmh0SJvSJrO/shUTAviyTyHGIqzxiFcolcQH/fW
+                                JB/JfE34+rhFD3KLxhFaJqH/gwqsZ+8VEYjArsjFHnCmxHHqNtlvCd/VWUnmQq85
+                                WMhqKILd5a+1RtA5mwIDAQAB
+                                -----END PUBLIC KEY-----
+                            </code>
+                        </p>
+                        <button ng-click="copyToClipboard()">Copy public key to clipboard</button>
+                    </li>
+                </ul>
+                <p>Once you have configured the JIRA, click continue</p>
+                <md-button class="md-raised"
+                           ng-click="startAuthAfterConfig()">Continue</md-button>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div ng-switch-when="AuthUrlPrintStep" layout="row" flex="100" layout-align="center center">
+        <md-card flex="90" flex-gt-sm="60">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Authorise OmniWheel to access your account</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column">
+                <p>
+                    Click on following link and authorise OmniWheel
+                </p>
+                <p><a ng-click="openWindow()">{{user.authUrl}}</a></p>
+                <p>Once you have authorised close the newly opened window and click continue</p>
+                <md-button class="md-raised"
+                           ng-click="continueAuth()">Continue</md-button>
+            </md-card-content>
+        </md-card>
+    </div>
+
+    <div ng-switch-default layout="row" flex="100" layout-align="center center">
+        <md-card flex="60" flex-gt-sm="30">
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Omni Wheel Login</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column">
+                <md-input-container>
+                    <label>Organisation</label>
+                    <input ng-model="loginData.orgName">
+                </md-input-container>
+
+                <md-button class="md-raised"
+                           ng-click="login()">Login</md-button>
+
+
+                <md-button class="md-raised"
+                           ng-click="register()">Register organisation</md-button>
+                <br/>
+                <code>*Only administrator can register the organisation</code>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

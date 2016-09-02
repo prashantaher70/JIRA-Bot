@@ -1,0 +1,50 @@
+.omni_jira_line {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+blockquote{
+  display:block;
+  margin: 0;
+  padding-left: 24px;
+  padding-top: 8px;
+  padding-bottom: 12px;
+  position: relative;
+
+  /*Font*/
+  line-height: 1.2;
+  color: #666;
+  text-align: justify;
+  background: #f9f9f9;
+}
+
+blockquote::before{
+  content: "\201C"; /*Unicode for Left Double Quote*/
+
+  /*Font*/
+  font-family: Georgia, serif;
+  font-weight: bold;
+  color: #999;
+
+  /*Positioning*/
+  position: absolute;
+  left: 10px;
+  top:5px;
+}
+
+blockquote::after{
+  /*Reset to make sure*/
+  content: "";
+}
+
+blockquote a{
+  text-decoration: none;
+  background: #eee;
+  cursor: pointer;
+  padding: 0 3px;
+  color: #c76c0c;
+}
+
+md-input-container {
+    margin: 0px;
+}

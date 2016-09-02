@@ -1,0 +1,68 @@
+<html lang="en-US">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Angular Material style sheet -->
+        <link rel="stylesheet" href="/css/angular-material.min.css">
+        <link rel="stylesheet" href="/css/voice.css">
+        <link rel="stylesheet" href="/css/home.css">
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/socket.io.min.js"></script>
+        <script src="/js/angular.min.js"></script>
+        <script src="/js/angular-animate.min.js"></script>
+        <script src="/js/angular-aria.min.js"></script>
+        <script src="/js/angular-route.min.js"></script>
+        <script src="/js/angular-messages.min.js"></script>
+        <script src="/js/angular-ui-router.min.js"></script>
+        <script src="/js/safe-apply.js"></script>
+
+        <!-- Angular Material Library -->
+        <script src="/js/angular-material.min.js"></script>
+
+        <script src="/services/Services.js"></script>
+        <script src="/services/SocketService.js"></script>
+        <script src="/services/AuthService.js"></script>
+        <script src="/services/ApiService.js"></script>
+        <script src="/services/TimeService.js"></script>
+
+        <script src="/app.js"></script>
+        <script src="/directives/voice.js"></script>
+        <script src="/directives/omnijira.js"></script>
+        <script src="/directives/omnicomment.js"></script>
+        <script src="/controllers/onboard.js"></script>
+        <script src="/controllers/home.js"></script>
+        <style type="text/css">
+            body {
+                background-color: #E0E0E0;
+            }
+
+            md-content {
+                background-color: #E0E0E0;
+            }
+
+            .animate-enter,
+            .animate-leave
+            {
+                -webkit-transition: 600ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                -moz-transition: 600ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                -ms-transition: 600ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                -o-transition: 600ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+                transition: 600ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+            }
+
+            .animate-enter {
+                left: 100%;
+            }
+            .animate-enter.animate-enter-active {
+                left: 0;
+            }
+
+            .animate-leave {
+                left: 0;
+            }
+        </style>
+    </head>
+    <body ng-app="OmniWheel">
+        <div ui-view></div>
+    </body>
+</html>
